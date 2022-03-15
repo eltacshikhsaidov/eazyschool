@@ -47,8 +47,10 @@ public class ContactController {
         }
 
         boolean isSent = contactService.saveMessageDetails(contact);
-
         redirect.addFlashAttribute("sent", isSent);
+
+        contactService.setCounter(contactService.getCounter() + 1);
+        log.info("Number of times the Contact form is submitted: " + contactService.getCounter());
         
         return"redirect:/contact";
     }
