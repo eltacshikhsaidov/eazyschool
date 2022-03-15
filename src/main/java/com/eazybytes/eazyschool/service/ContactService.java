@@ -12,7 +12,6 @@ public class ContactService {
 
     public boolean saveMessageDetails(Contact contact) {
         boolean isSaved = true;
-        // TODO need to add message to db
         log.info(contact.toString());
         return isSaved;
     }

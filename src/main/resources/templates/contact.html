@@ -45,7 +45,19 @@
                     <ul id="hideMe">
                         <li class="alert alert-danger" role="alert"
                             th:each="error : ${#fields.errors('contact.*')}" th:text="${error}" />
+
+                        <li class="alert alert-success" role="alert"
+                            th:if="${sent == true}" th:text="${'Message sent successfully!'}" />
                     </ul>
+
+                    <!-- added by eltac shikhsaidov -->
+                    <!-- <ul id="hideMe">
+                        <li class="alert alert-success" role="alert"
+                            th:if="${sent}" th:text="${'Message sent successfully!'}" />
+                    </ul> -->
+                    <!-- added by eltac shikhsaidov -->
+
+
 
                     <form th:action="@{/saveMsg}" th:object="${contact}" method="post" class="signin-form">
                         <div class="input-grids">

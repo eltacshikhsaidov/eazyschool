@@ -14,6 +14,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class ContactController {
@@ -35,7 +36,9 @@ public class ContactController {
 
     @PostMapping(value = "/saveMsg")
     public String saveMessage(@Valid @ModelAttribute("contact") Contact contact, 
-        Errors errors
+        Errors errors,
+        Model model,
+        RedirectAttributes redirect
     ) {
 
         if (errors.hasErrors()) {
@@ -43,7 +46,10 @@ public class ContactController {
             return "contact";
         }
 
-        contactService.saveMessageDetails(contact);
+        boolean isSent = contactService.saveMessageDetails(contact);
+
+        redirect.addFlashAttribute("sent", isSent);
+        
         return"redirect:/contact";
     }
     
