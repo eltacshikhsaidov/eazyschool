@@ -1,90 +1,35 @@
 package com.eazybytes.eazyschool.model;
 
+import javax.validation.constraints.*;
+
+import lombok.Data;
+
+@Data
 public class Contact {
 
+     /*
+    * @NotNull: Checks if a given field is not null but allows empty values & zero elements inside collections.
+      @NotEmpty: Checks if a given field is not null and its size/length is greater than zero.
+      @NotBlank: Checks if a given field is not null and trimmed length is greater than zero.
+    * */
+    @NotBlank(message="Name must not be blank")
+    @Size(min=3, message="Name must be at least 3 characters long")
     private String name;
+
+    @NotBlank(message="Mobile number must not be blank")
+    @Pattern(regexp="(^$|[0-9]{10})",message = "Mobile number must be 10 digits")
     private String mobileNum;
+
+    @NotBlank(message="Email must not be blank")
+    @Email(message = "Please provide a valid email address" )
     private String email;
+
+    @NotBlank(message="Subject must not be blank")
+    @Size(min=5, message="Subject must be at least 5 characters long")
     private String subject;
+
+    @NotBlank(message="Message must not be blank")
+    @Size(min=10, message="Message must be at least 10 characters long")
     private String message;
-
-    
-
-
-
-    /**
-     * @return String return the name
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * @param name the name to set
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
-     * @return String return the mobileNum
-     */
-    public String getMobileNum() {
-        return mobileNum;
-    }
-
-    /**
-     * @param mobileNum the mobileNum to set
-     */
-    public void setMobileNum(String mobileNum) {
-        this.mobileNum = mobileNum;
-    }
-
-    /**
-     * @return String return the email
-     */
-    public String getEmail() {
-        return email;
-    }
-
-    /**
-     * @param email the email to set
-     */
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    /**
-     * @return String return the subject
-     */
-    public String getSubject() {
-        return subject;
-    }
-
-    /**
-     * @param subject the subject to set
-     */
-    public void setSubject(String subject) {
-        this.subject = subject;
-    }
-
-    /**
-     * @return String return the message
-     */
-    public String getMessage() {
-        return message;
-    }
-
-    /**
-     * @param message the message to set
-     */
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    @Override
-    public String toString () {
-        return "Contact['" + name + "', '" + email + "']";
-    }
 
 }
